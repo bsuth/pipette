@@ -1,0 +1,9 @@
+return {
+  default = {
+    verbose = true,
+    pattern = '.',
+    ROOT = {'spec'}
+  },
+}
+
+-- vim: syntax=lua
