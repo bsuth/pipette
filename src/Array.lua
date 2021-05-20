@@ -1,4 +1,3 @@
-local unsafe = require '_unsafe'
 local typecheck = require 'typecheck'
 
 local Array = {}
@@ -6,7 +5,14 @@ local Array = {}
 function Array.join(t, sep)
   typecheck(t, 'table')
   typecheck(sep, 'string')
-  unsafe.join(t, sep)
+
+  local joined = ''
+
+  for k, v in ipairs(t) do
+    joined = joined .. tostring(t[k]) .. (k == #t and '' or sep)
+  end
+
+  return joined
 end
 
 -- -- TODO: negative indices?

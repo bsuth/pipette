@@ -1,4 +1,3 @@
-local unsafe = require '_unsafe'
 local typecheck = require 'typecheck'
 
 local String = {}

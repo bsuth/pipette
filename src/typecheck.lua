@@ -1,13 +1,17 @@
-local unsafe = require '_unsafe'
+local flags = require '_flags'
+local unsafe = require 'unsafe'
+local Array = require 'Array'
 
 return setmetatable({}, {
   __call = function(self, value, ...)
+    if flags.UNSAFE then return end
+
     local validtypes = {...}
     local valuetype = type(value)
 
     for i, v in ipairs(validtypes) do
       if type(v) ~= 'string' then
-        error('typecheck usage: expected types must be strings')
+        error('typecheck(v, ...) => ... must be strings')
       end
     end
 
@@ -18,7 +22,7 @@ return setmetatable({}, {
     end
 
     error(('expected %s, got %s'):format(
-      '('..unsafe.join(validtypes, ', ')..')',
+      '('..unsafe(Array.join(validtypes, ', '))..')',
       valuetype
     ))
   end,
