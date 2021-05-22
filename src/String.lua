@@ -1,9 +1,6 @@
-local typecheck = require 'typecheck'
-
 local String = {}
 
 function String.split(s, sep)
-  typecheck(sep, 'string', 'nil')
   sep = type(sep) == 'string' and sep or '%s'
 
   local parts = {}
@@ -17,7 +14,6 @@ end
 
 return setmetatable(String, {
   __call = function(self, s)
-    typecheck(s, 'string')
 
     return setmetatable({}, {
       __index = function(self, k)

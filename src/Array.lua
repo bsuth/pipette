@@ -41,7 +41,6 @@ local mt = {
 -- @tparam any v
 -- @treturn self
 function Array:push(v)
-  typecheck(self, Array.__type)
   table.insert(self.__values, v)
   return self
 end
@@ -52,7 +51,6 @@ end
 -- @tparam any v
 -- @treturn number
 function Array:len()
-  typecheck(self, Array.__type)
   return #self.__values
 end
 
@@ -62,9 +60,6 @@ end
 -- @tparam function f
 -- @treturn self
 function Array:each(f)
-  typecheck(self, Array.__type)
-  typecheck(f, 'function')
-
   for i = 0, self:len() - 1 do
     f(self[i], i)
   end
@@ -79,9 +74,6 @@ end
 -- @tparam any accumulator
 -- @treturn accumulator
 function Array:reduce(f, accumulator)
-  typecheck(self, Array.__type)
-  typecheck(f, 'function')
-
   self:each(function(v, k)
     accumulator = f(accumulator, v, k)
   end)
@@ -95,9 +87,6 @@ end
 -- @tparam function f
 -- @treturn Array
 function Array:map(f)
-  typecheck(self, Array.__type)
-  typecheck(f, 'function')
-
   return self:reduce(function(mapped, v, k)
     return mapped:push(f(v, k))
   end, Array())
@@ -109,9 +98,6 @@ end
 -- @tparam function f
 -- @treturn Array
 function Array:filter(f)
-  typecheck(self, Array.__type)
-  typecheck(f, 'function')
-
   return self:reduce(function(filtered, v, k)
     return f(v, k) and filtered:push(v) or filtered
   end, Array())
@@ -124,9 +110,6 @@ end
 -- @treturn v | nil
 -- @treturn number | nil
 function Array:find(v)
-  typecheck(self, Array.__type)
-  typecheck(f, 'function')
-
   for i = 0, self:len() - 1 do
     if f(self[i], i) then
       return self[i], i
@@ -143,10 +126,6 @@ end
 -- @treturn iend number
 -- @treturn Array
 function Array:slice(istart, iend)
-  typecheck(self, Array.__type)
-  typecheck(istart, 'number')
-  typecheck(iend, 'number')
-
   local sliced = Array()
 
   for i = istart, iend do
@@ -162,8 +141,6 @@ end
 -- @tparam string | nil sep
 -- @treturn string
 function Array:join(sep)
-  typecheck(self, Array.__type)
-  typecheck(sep, 'string', 'nil')
   sep = sep or ''
 
   return self:reduce(function(joined, v, k)
@@ -177,7 +154,6 @@ end
 
 return setmetatable(Array, {
   __call = function(self, t)
-    typecheck(t, 'table', 'nil')
     return setmetatable({ __values = t or {}, }, mt)
   end,
 })
