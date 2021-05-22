@@ -111,7 +111,11 @@ end
 -- @tparam function | any v
 -- @treturn v | nil
 -- @treturn number | nil
-function Array:find(v)
+function Array:find(fv)
+  f = typeof(fv) == 'function' and fv or function(v, k)
+    return v == fv
+  end
+
   for i = 0, self:len() - 1 do
     if f(self[i], i) then
       return self[i], i
@@ -125,12 +129,20 @@ end
 -- Generate a new array from an interval.
 --
 -- @tparam istart number
--- @treturn iend number
+-- @treturn iend number | nil
 -- @treturn Array
 function Array:slice(istart, iend)
   local sliced = Array()
 
-  for i = istart, iend do
+  if iend == nil then
+    if istart < 0 then
+      iend = 0
+    else
+      iend = self:len()
+    end
+  end
+
+  for i = istart, iend - 1 do
     sliced:push(self[i])
   end
 
@@ -146,7 +158,7 @@ function Array:join(sep)
   sep = sep or ''
 
   return self:reduce(function(joined, v, k)
-    return joined .. tostring(t[k]) .. (k == #t and '' or sep)
+    return joined..tostring(v)..(k == self:len() - 1 and '' or sep)
   end, '')
 end
 
