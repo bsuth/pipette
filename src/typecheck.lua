@@ -1,29 +1,26 @@
 local flags = require '_flags'
-local unsafe = require 'unsafe'
 local Array = require 'Array'
+local typeof = require 'typeof'
+local unsafe = require 'unsafe'
 
 return setmetatable({}, {
   __call = function(self, value, ...)
     if flags.UNSAFE then return end
+    local validtypes = unsafe(Array, ...)
 
-    local validtypes = {...}
-    local valuetype = type(value)
-
-    for i, v in ipairs(validtypes) do
-      if type(v) ~= 'string' then
-        error('typecheck(v, ...) => ... must be strings')
+    unsafe(validtypes:each(function(v)
+      if typeof(v) ~= 'string' then
+        error('typecheck(value, ...) => ... must be strings, got: '..typeof(v))
       end
-    end
+    end))
 
-    for i, v in ipairs(validtypes) do
-      if valuetype == v then
-        return
-      end
+    if unsafe(validtypes:find(function(v) return typeof(value) == v end)) then
+      return
     end
 
     error(('expected %s, got %s'):format(
-      '('..unsafe(Array.join(validtypes, ', '))..')',
-      valuetype
+      '('..unsafe(validtypes:join(', '))..')',
+      typeof(value)
     ))
   end,
 })
