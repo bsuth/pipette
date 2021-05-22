@@ -1,7 +1,6 @@
 --- A 0-based Array class.
 -- @classmod Array
 
-local typecheck = require 'typecheck'
 local typeof = require 'typeof'
 
 --
@@ -20,12 +19,12 @@ local Array = {
 local mt = {
   __index = function(self, k)
     if typeof(k) == 'number' then
-      if k > #self - 1 or k < -(#self - 1) then
+      if k > self:len() - 1 or k < -(self:len() - 1) then
         error('out of bounds access: '..tostring(k))
       elseif k < 0 then
-        return self[k + 1 + #self]
+        return self.__values[k + 1 + self:len()]
       else
-        return self[k + 1]
+        return self.__values[k + 1]
       end
     else
       return Array[k]
@@ -36,22 +35,25 @@ local mt = {
 }
 
 ---
--- Add an element to the end of the array.
---
--- @tparam any v
--- @treturn self
-function Array:push(v)
-  table.insert(self.__values, v)
-  return self
-end
-
----
 -- Return the total number of elements.
 --
 -- @tparam any v
 -- @treturn number
 function Array:len()
   return #self.__values
+end
+
+---
+-- Add elements to the end of the array.
+--
+-- @tparam any ...
+-- @treturn self
+function Array:push(...)
+  for k, v in ipairs({...}) do
+    table.insert(self.__values, v)
+  end
+
+  return self
 end
 
 ---
