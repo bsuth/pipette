@@ -1,3 +1,6 @@
+--- A 0-based Array class.
+-- @classmod Array
+
 local typecheck = require 'typecheck'
 local typeof = require 'typeof'
 
@@ -32,36 +35,49 @@ local mt = {
   -- TODO: operations (adding, subtracting arrays)
 }
 
+---
+-- Add an element to the end of the array.
 --
--- basics
---
-
+-- @tparam any v
+-- @treturn self
 function Array:push(v)
   typecheck(self, Array.__type)
   table.insert(self.__values, v)
   return self
 end
 
+---
+-- Return the total number of elements.
+--
+-- @tparam any v
+-- @treturn number
 function Array:len()
   typecheck(self, Array.__type)
   return #self.__values
 end
 
+---
+-- Call a function for each element.
 --
--- iterating
---
-
+-- @tparam function f
+-- @treturn self
 function Array:each(f)
   typecheck(self, Array.__type)
   typecheck(f, 'function')
 
-  for k, v in ipairs(self.__values) do
-    f(v, k)
+  for i = 0, self:len() - 1 do
+    f(self[i], i)
   end
 
   return self
 end
 
+---
+-- Generate a value using all elements.
+--
+-- @tparam function f
+-- @tparam any accumulator
+-- @treturn accumulator
 function Array:reduce(f, accumulator)
   typecheck(self, Array.__type)
   typecheck(f, 'function')
@@ -73,6 +89,11 @@ function Array:reduce(f, accumulator)
   return accumulator
 end
 
+---
+-- Generate a new array by applying a function to all elements.
+--
+-- @tparam function f
+-- @treturn Array
 function Array:map(f)
   typecheck(self, Array.__type)
   typecheck(f, 'function')
@@ -82,6 +103,11 @@ function Array:map(f)
   end, Array())
 end
 
+---
+-- Generate a new array by filtering elements.
+--
+-- @tparam function f
+-- @treturn Array
 function Array:filter(f)
   typecheck(self, Array.__type)
   typecheck(f, 'function')
@@ -91,24 +117,31 @@ function Array:filter(f)
   end, Array())
 end
 
+---
+-- Find an element and its index.
 --
--- util
---
-
-function Array:find(f)
+-- @tparam function | any v
+-- @treturn v | nil
+-- @treturn number | nil
+function Array:find(v)
   typecheck(self, Array.__type)
   typecheck(f, 'function')
 
-  for k, v in ipairs(self.__values) do
-    if f(v, k) then
-      return v, k
+  for i = 0, self:len() - 1 do
+    if f(self[i], i) then
+      return self[i], i
     end
   end
 
   return nil, nil
 end
 
--- -- TODO: negative indices?
+---
+-- Generate a new array from an interval.
+--
+-- @tparam istart number
+-- @treturn iend number
+-- @treturn Array
 function Array:slice(istart, iend)
   typecheck(self, Array.__type)
   typecheck(istart, 'number')
@@ -117,15 +150,21 @@ function Array:slice(istart, iend)
   local sliced = Array()
 
   for i = istart, iend do
-    sliced:push(self.__values[i])
+    sliced:push(self[i])
   end
 
   return sliced
 end
 
+---
+-- Generate a string by concatenating all elements, optionally w/ a separator.
+--
+-- @tparam string | nil sep
+-- @treturn string
 function Array:join(sep)
   typecheck(self, Array.__type)
-  typecheck(sep, 'string')
+  typecheck(sep, 'string', 'nil')
+  sep = sep or ''
 
   return self:reduce(function(joined, v, k)
     return joined .. tostring(t[k]) .. (k == #t and '' or sep)
