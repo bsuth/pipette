@@ -25,9 +25,9 @@ dependencies = {
 build = {
   type = 'builtin',
   modules = {
-    Array = 'src/Array.lua',
-    String = 'src/String.lua',
-    path = 'src/path.lua',
-    typeof = 'src/typeof.lua',
+    ['luascript.Array'] = 'src/Array.lua',
+    ['luascript.String'] = 'src/String.lua',
+    ['luascript.path'] = 'src/path.lua',
+    ['luascript.typeof'] = 'src/typeof.lua',
   },
 }
