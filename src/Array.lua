@@ -1,7 +1,7 @@
 --- A 0-based Array class.
 -- @classmod Array
 
-local typeof = require 'typeof'
+local typeof = require 'luascript/typeof'
 
 --
 -- setup
@@ -19,13 +19,9 @@ local Array = {
 local mt = {
   __index = function(self, k)
     if typeof(k) == 'number' then
-      if k > self:len() - 1 or k < -(self:len() - 1) then
-        error('out of bounds access: '..tostring(k))
-      elseif k < 0 then
-        return self.__values[k + 1 + self:len()]
-      else
-        return self.__values[k + 1]
-      end
+      return k < 0
+        and self.__values[k + 1 + self:len()]
+        or self.__values[k + 1]
     else
       return Array[k]
     end
@@ -135,11 +131,7 @@ function Array:slice(istart, iend)
   local sliced = Array()
 
   if iend == nil then
-    if istart < 0 then
-      iend = 0
-    else
-      iend = self:len()
-    end
+    iend = istart < 0 and 0 or self:len()
   end
 
   for i = istart, iend - 1 do
