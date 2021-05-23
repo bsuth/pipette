@@ -28,7 +28,6 @@ build = {
     Array = 'src/Array.lua',
     String = 'src/String.lua',
     path = 'src/path.lua',
-    typecheck = 'src/typecheck.lua',
-    unsafe = 'src/unsafe.lua',
+    typeof = 'src/typeof.lua',
   },
 }
