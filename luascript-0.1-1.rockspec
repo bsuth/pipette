@@ -1,9 +1,9 @@
 package = 'luascript'
-version = '0.1.0'
+version = '0.1-1'
 
 source = {
-   url = 'https://github.com/bsuth/luascript',
-   tag = '0.1.0',
+   url = 'git://github.com/bsuth/luascript',
+   branch = 'master',
 }
 
 description = {
@@ -23,7 +23,7 @@ dependencies = {
 }
 
 build = {
-  type = "builtin",
+  type = 'builtin',
   modules = {
     Array = 'src/Array.lua',
     String = 'src/String.lua',
