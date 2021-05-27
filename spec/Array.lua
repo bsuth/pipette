@@ -27,6 +27,13 @@ describe('Array', function()
     assert.are.equal(Array({ 4, 6, -3 }):len(), 3)
   end)
 
+  test('Array:insert', function()
+    compare_arrays(
+      Array({ 4, 3, 7 }):insert(1, 4, 2),
+      Array({ 4, 3, 4, 2, 7 })
+    )
+  end)
+
   test('Array:push', function()
     local x = Array()
     x:push(2)

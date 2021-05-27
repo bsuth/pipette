@@ -40,16 +40,26 @@ function Array:len()
 end
 
 ---
+-- Add elements at a specified index.
+--
+-- @tparam number i
+-- @tparam any ...
+-- @treturn self
+function Array:insert(i, ...)
+  for k, v in ipairs({...}) do
+    table.insert(self.__values, i + 1 + k, v)
+  end
+
+  return self
+end
+
+---
 -- Add elements to the end of the array.
 --
 -- @tparam any ...
 -- @treturn self
 function Array:push(...)
-  for k, v in ipairs({...}) do
-    table.insert(self.__values, v)
-  end
-
-  return self
+  return self:insert(self:len() - 1, ...)
 end
 
 ---
