@@ -29,8 +29,13 @@ describe('Array', function()
 
   test('Array:insert', function()
     compare_arrays(
+      Array({ 4, 3, 7 }):insert(0, 4, 2),
+      Array({ 4, 2, 4, 3, 7 })
+    )
+
+    compare_arrays(
       Array({ 4, 3, 7 }):insert(1, 4, 2),
-      Array({ 4, 3, 4, 2, 7 })
+      Array({ 4, 4, 2, 3, 7 })
     )
 
     compare_arrays(

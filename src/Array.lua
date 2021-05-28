@@ -46,7 +46,7 @@ end
 -- @tparam any ...
 -- @treturn self
 function Array:insert(i, ...)
-  i = (i < 0 and i + self:len() or i) + 1
+  i = (i < 0 and i + self:len() + 1 or i)
 
   for k, v in ipairs({...}) do
     table.insert(self.__values, i + k, v)
