@@ -32,6 +32,35 @@ describe('Array', function()
       Array({ 4, 3, 7 }):insert(1, 4, 2),
       Array({ 4, 3, 4, 2, 7 })
     )
+
+    compare_arrays(
+      Array({ 4, 3, 7 }):insert(-2, 4, 2),
+      Array({ 4, 3, 4, 2, 7 })
+    )
+  end)
+
+  test('Array:push', function()
+    local x = Array()
+    x:push(2)
+    assert.are.equal(x:len(), 1)
+    x:push(43):push(4, 6, 3)
+  end)
+
+  test('Array:remove', function()
+    compare_arrays(
+      Array({ 4, 3, 7 }):remove(1, 1),
+      Array({ 4, 7 })
+    )
+
+    compare_arrays(
+      Array({ 4, 3, 7, 9, 3 }):remove(2, 2),
+      Array({ 4, 3, 3 })
+    )
+
+    compare_arrays(
+      Array({ 4, 3, 8, 7 }):remove(-2, 2),
+      Array({ 4, 3 })
+    )
   end)
 
   test('Array:push', function()

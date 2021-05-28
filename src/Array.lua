@@ -46,8 +46,10 @@ end
 -- @tparam any ...
 -- @treturn self
 function Array:insert(i, ...)
+  i = (i < 0 and i + self:len() or i) + 1
+
   for k, v in ipairs({...}) do
-    table.insert(self.__values, i + 1 + k, v)
+    table.insert(self.__values, i + k, v)
   end
 
   return self
@@ -59,7 +61,32 @@ end
 -- @tparam any ...
 -- @treturn self
 function Array:push(...)
-  return self:insert(self:len() - 1, ...)
+  return self:insert(-1, ...)
+end
+
+---
+-- Remove elements from a specified index.
+--
+-- @tparam number i
+-- @tparam number? n
+-- @treturn self
+function Array:remove(i, n)
+  i = (i < 0 and i + self:len() or i) + 1
+  n = n or 1
+
+  for j = 1, n do
+    table.remove(self.__values, i)
+  end
+
+  return self
+end
+
+---
+-- Remove elements from the end of the array.
+--
+-- @treturn self
+function Array:pop()
+  return self:remove(-1)
 end
 
 ---
