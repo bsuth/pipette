@@ -7,10 +7,7 @@ local typeof = require 'luascript/typeof'
 -- setup
 --
 
-local Array = {
-  __type = 'Array',
-  __values = {},
-}
+local Array = { __type = 'Array' }
 
 --
 -- metatable
@@ -24,6 +21,19 @@ local mt = {
         or self.__values[k + 1]
     else
       return Array[k]
+    end
+  end,
+
+  __newindex = function(self, i, v)
+    if typeof(i) == 'number' then
+      if i < 0 then
+        self.__values[i + 1 + self:len()] = v
+      else
+        self.__values[i + 1] = v
+      end
+    else
+      -- TODO: better error message here
+      error('Cannot assign to Array')
     end
   end,
 
@@ -73,6 +83,11 @@ end
 function Array:remove(i, n)
   i = (i < 0 and i + self:len() or i) + 1
   n = n or 1
+  print(i, n)
+
+  for j, v in ipairs(self.__values) do
+    print(j, v)
+  end
 
   for j = 1, n do
     table.remove(self.__values, i)
