@@ -83,11 +83,6 @@ end
 function Array:remove(i, n)
   i = (i < 0 and i + self:len() or i) + 1
   n = n or 1
-  print(i, n)
-
-  for j, v in ipairs(self.__values) do
-    print(j, v)
-  end
 
   for j = 1, n do
     table.remove(self.__values, i)
