@@ -41,6 +41,14 @@ local mt = {
 }
 
 ---
+-- Return the underlying table.
+--
+-- @treturn table
+function Array:raw()
+  return self.__values
+end
+
+---
 -- Return the total number of elements.
 --
 -- @tparam any v

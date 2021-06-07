@@ -6,5 +6,6 @@ TODO
 Array operators (+, -, \*)
 Array::swap?
 
-String
+String::split
+
 Map

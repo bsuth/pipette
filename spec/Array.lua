@@ -20,6 +20,12 @@ describe('Array', function()
     assert.are.equal(x[2], nil)
   end)
 
+  test('Array:raw', function()
+    local x = { 11, 7 }
+    local y = Array(x)
+    assert.are.equal(x, y:raw())
+  end)
+
   test('Array:len', function()
     assert.are.equal(Array():len(), 0)
     assert.are.equal(Array({}):len(), 0)
