@@ -56,7 +56,7 @@ function _.join(t, sep)
   local joined = ''
 
   for i, v in _.ipairs(t) do
-    joined = joined .. tostring(v) .. (i == #t and '' or sep)
+    joined = joined .. tostring(v) .. (i < #t and sep or '')
   end
 
   return joined
