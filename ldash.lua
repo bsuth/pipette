@@ -1,28 +1,6 @@
 local _ = {}
 
 -- -----------------------------------------------------------------------------
--- Ternary / Null Coalesce
--- -----------------------------------------------------------------------------
-
-setmetatable(_, {
-  __call = function(self, a, b, c)
-    if a then
-      return b
-    else
-      return c
-    end
-  end,
-})
-
-function _._(a, b)
-  if a == nil then
-    return b
-  else
-    return a
-  end
-end
-
--- -----------------------------------------------------------------------------
 -- Iterators
 -- -----------------------------------------------------------------------------
 
@@ -48,9 +26,9 @@ function _.insert(t, idx, ...)
 
   if #varargs == 0 then
     varargs = { idx }
-    idx = #t
+    idx = #t + 1
   else
-    idx = idx < 0 and idx + #t or idx
+    idx = idx < 0 and idx + #t + 1 or idx
   end
 
   for i, v in ipairs(varargs) do
@@ -63,7 +41,7 @@ end
 function _.remove(t, idx, n)
   local removed = {}
 
-  idx = idx and (idx < 0 and idx + #t or idx) or #t
+  idx = idx and (idx < 0 and idx + #t + 1 or idx) or #t
   n = n or 1
 
   for i = 1, n do
@@ -74,20 +52,21 @@ function _.remove(t, idx, n)
 end
 
 function _.join(t, sep)
-  sep = _._(sep, '')
+  sep = sep or ''
   local joined = ''
 
-  for a, v in _.pairs(t) do
-    joined = joined .. tostring(v) .. sep
+  for i, v in _.ipairs(t) do
+    joined = joined .. tostring(v) .. (i == #t and '' or sep)
   end
 
-  return joined:substr(joined:len() - sep:len())
+  return joined
 end
 
 function _.slice(t, istart, iend)
   local sliced = {}
 
-  iend = _._(iend, _.(istart < 0, -1, #t))
+  istart = istart < 0 and istart + #t + 1 or istart
+  iend = iend and (iend < 0 and iend + #t + 1 or iend) or #t
 
   for i = istart, iend do
     _.insert(sliced, t[i])
@@ -100,12 +79,20 @@ end
 -- kpairs
 -- -----------------------------------------------------------------------------
 
+function _.keys(t)
+  -- TODO
+end
+
+function _.values(t)
+  -- TODO
+end
+
 -- -----------------------------------------------------------------------------
 -- pairs
 -- -----------------------------------------------------------------------------
 
 function _.each(t, f, iter)
-  iter = _._(iter, pairs)
+  iter = iter or pairs
 
   for a, v in iter(t) do
     f(v, a)
@@ -113,24 +100,29 @@ function _.each(t, f, iter)
 end
 
 function _.map(t, f, iter)
-  iter = _._(iter, pairs)
+  iter = iter or pairs
   local mapped = {}
 
   for a, v in iter(t) do
     local mapV, mapA = f(v, a)
-    mapped[_._(mapA, _(type(a) == 'number', #mapped, a))] = mapV
+
+    if mapA == nil then
+      mapA = type(a) == 'number' and #mapped or a
+    end
+
+    mapped[mapA] = mapV
   end
 
   return mapped
 end
 
 function _.filter(t, f, iter)
-  iter = _._(iter, pairs)
+  iter = iter or pairs
   local filtered = {}
 
   for a, v in iter(t) do
     if f(v, a) then
-      filtered[_(type(a) == 'number', #filtered, a)] = v
+      filtered[type(a) == 'number' and #filtered or a] = v
     end
   end
 
@@ -138,7 +130,7 @@ function _.filter(t, f, iter)
 end
 
 function _.reduce(t, f, accumulator, iter)
-  iter = _._(iter, pairs)
+  iter = iter or pairs
 
   for a, v in iter(t) do
     accumulator = f(accumulator, v, a)
@@ -148,7 +140,7 @@ function _.reduce(t, f, accumulator, iter)
 end
 
 function _.find(t, f, iter)
-  iter = _._(iter, pairs)
+  iter = iter or pairs
 
   for a, v in iter(t) do
     if f(v, a) then
@@ -164,10 +156,10 @@ end
 -- -----------------------------------------------------------------------------
 
 function _.split(s, sep)
-  sep = _._(sep, '%s')
+  sep = sep or '%s'
   local parts = {}
 
-  for match in s:gmatch("([^"..sep.."]+)") do
+  for match in s:gmatch('([^' .. sep .. ']+)') do
     table.insert(parts, match)
   end
 
