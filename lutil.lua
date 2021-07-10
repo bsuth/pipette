@@ -9,8 +9,9 @@ function _.pairs(t)
 end
 
 function _.kpairs(t)
-  -- TODO
-  return ipairs(t)
+  -- pairs always iterates through number indices first. Since pairs is a
+  -- stateless iterator, we can simply "start from there"
+  return next, t, #t
 end
 
 function _.ipairs(t)
@@ -55,7 +56,7 @@ function _.join(t, sep)
   sep = sep or ''
   local joined = ''
 
-  for i, v in _.ipairs(t) do
+  for i, v in ipairs(t) do
     joined = joined .. tostring(v) .. (i < #t and sep or '')
   end
 
@@ -90,16 +91,29 @@ end
 -- -----------------------------------------------------------------------------
 
 function _.keys(t)
-  -- TODO
-end
+  local keys = {}
 
-function _.values(t)
-  -- TODO
+  for k, v in _.kpairs(t) do
+    _.insert(keys, k)
+  end
+
+  return keys
 end
 
 -- -----------------------------------------------------------------------------
 -- pairs
 -- -----------------------------------------------------------------------------
+
+function _.values(t, iter)
+  iter = iter or pairs
+  local values = {}
+
+  for k, v in iter(t) do
+    _.insert(values, k)
+  end
+
+  return values
+end
 
 function _.each(t, f, iter)
   iter = iter or pairs
@@ -151,8 +165,13 @@ function _.reduce(t, f, accumulator, iter)
   return accumulator
 end
 
-function _.find(t, f, iter)
+function _.find(t, value, iter)
   iter = iter or pairs
+
+  local f = type(value) == 'function' and value
+    or function(v)
+      return v == value
+    end
 
   for a, v in iter(t) do
     if f(v, a) then

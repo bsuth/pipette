@@ -1,7 +1,0 @@
-return {
-  default = {
-    verbose = true,
-  },
-}
-
--- vim: syntax=lua
