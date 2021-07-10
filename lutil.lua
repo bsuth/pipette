@@ -117,10 +117,12 @@ function _.map(t, f, iter)
     local mapV, mapA = f(v, a)
 
     if mapA == nil then
-      mapA = type(a) == 'number' and #mapped or a
+      if type(a) == 'number' then
+        table.insert(mapped, mapV)
+      else
+        mapped[a] = mapV
+      end
     end
-
-    mapped[mapA] = mapV
   end
 
   return mapped
