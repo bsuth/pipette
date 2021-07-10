@@ -1,8 +1,8 @@
-package = 'ldash'
+package = 'lutil'
 version = '0.1-1'
 
 source = {
-   url = 'git://github.com/bsuth/luascript',
+   url = 'git://github.com/bsuth/lutil',
    branch = 'master',
 }
 
@@ -25,9 +25,6 @@ dependencies = {
 build = {
   type = 'builtin',
   modules = {
-    ['luascript.Array'] = 'src/Array.lua',
-    ['luascript.String'] = 'src/String.lua',
-    ['luascript.path'] = 'src/path.lua',
-    ['luascript.typeof'] = 'src/typeof.lua',
+    ['lutil'] = 'lutil.lua',
   },
 }
