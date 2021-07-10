@@ -75,6 +75,16 @@ function _.slice(t, istart, iend)
   return sliced
 end
 
+function _.has(t, value, iter)
+  for a, v in ipairs(t) do
+    if v == value then
+      return true
+    end
+  end
+
+  return false
+end
+
 -- -----------------------------------------------------------------------------
 -- kpairs
 -- -----------------------------------------------------------------------------
