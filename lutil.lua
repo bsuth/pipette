@@ -70,14 +70,14 @@ function _.slice(t, istart, iend)
   iend = iend and (iend < 0 and iend + #t + 1 or iend) or #t
 
   for i = istart, iend do
-    _.insert(sliced, t[i])
+    table.insert(sliced, t[i])
   end
 
   return sliced
 end
 
-function _.has(t, value, iter)
-  for a, v in ipairs(t) do
+function _.has(t, value)
+  for i, v in ipairs(t) do
     if v == value then
       return true
     end
@@ -94,7 +94,7 @@ function _.keys(t)
   local keys = {}
 
   for k, v in _.kpairs(t) do
-    _.insert(keys, k)
+    table.insert(keys, k)
   end
 
   return keys
@@ -109,7 +109,7 @@ function _.values(t, iter)
   local values = {}
 
   for k, v in iter(t) do
-    _.insert(values, k)
+    table.insert(values, v)
   end
 
   return values
@@ -148,7 +148,11 @@ function _.filter(t, f, iter)
 
   for a, v in iter(t) do
     if f(v, a) then
-      filtered[type(a) == 'number' and #filtered or a] = v
+      if type(a) == 'number' then
+        table.insert(filtered, v)
+      else
+        filtered[a] = v
+      end
     end
   end
 
@@ -180,6 +184,28 @@ function _.find(t, value, iter)
   end
 
   return nil, nil
+end
+
+function _.combine(...)
+  local args = { ... }
+  iter = pairs
+  local combined = {}
+
+  if type(args[#args]) == 'function' then
+    iter = table.remove(args)
+  end
+
+  for i, t in ipairs(args) do
+    for a, v in iter(t) do
+      if type(a) == 'number' then
+        table.insert(combined, v)
+      else
+        combined[a] = v
+      end
+    end
+  end
+
+  return combined
 end
 
 -- -----------------------------------------------------------------------------
