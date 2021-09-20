@@ -1,32 +1,113 @@
--- -----------------------------------------------------------------------------
--- Module
--- -----------------------------------------------------------------------------
-
+--- Table Utils
+-- @module T
 local T = {}
 
--- -----------------------------------------------------------------------------
--- API
--- -----------------------------------------------------------------------------
+--- Create a table from the keys of another table's map elements.
+-- @tparam table t the table from which to extract
+-- @treturn table the table of keys
+function T.keys(t)
+  local keys = {}
 
---- Join the array elements of a table into a string
--- @tab t the table to join
--- @string[opt=''] sep optional separator
--- @treturn string the joined string
-function T.join(t, sep)
-  sep = sep or ''
-  local joined = ''
-
-  for i, v in ipairs(t) do
-    joined = joined .. tostring(v) .. (i < #t and sep or '')
+  for key, value in pairs(t) do
+    if type(key) == 'string' then
+      table.insert(keys, key)
+    end
   end
 
-  return joined
+  return keys
 end
 
---- Create a table from a consecutive subset of another table's array elements
--- @tab t the table from which to extract
--- @int[opt=0] istart starting index of the slice, can be negative
--- @int[opt=#t] iend ending index of the slice, can be negative
+--- Create a table from the values of another table's map elements.
+-- @tparam table t the table from which to extract
+-- @treturn table the table of values
+function T.values(t)
+  local values = {}
+
+  for key, value in pairs(t) do
+    if type(key) == 'string' then
+      table.insert(values, value)
+    end
+  end
+
+  return values
+end
+
+--- Invoke a callback over all elements of a table.
+-- @tparam table t the table to iterate
+-- @tparam function callback callback to invoke. Takes (value, key) as params
+-- @treturn table t (for chaining)
+function T.each(t, callback)
+  for key, value in pairs(t) do
+    callback(value, key)
+  end
+
+  return t
+end
+
+--- Map the elements of a table to different values (and keys).
+-- @tparam table t the table to map
+-- @tparam function mapper callback to invoke. Takes (value, key) as params and
+-- is expected to return at least one value (the mapped value) and optionally a
+-- new key.
+-- @treturn table the mapped table
+function T.map(t, mapper)
+  local mapped = {}
+
+  for key, value in pairs(t) do
+    local mappedvalue, mappedkey = mapper(value, key)
+
+    if mappedkey ~= nil then
+      mapped[mappedkey] = mappedvalue
+    elseif type(key) == 'string' then
+      mapped[key] = mappedvalue
+    else
+      table.insert(mapped, mappedvalue)
+    end
+  end
+
+  return mapped
+end
+
+--- Filter the elements of a table.
+-- @tparam table t the table to filter
+-- @tparam function filterer callback to invoke. Takes (value, key) as params
+-- and it expected to return either true (if the key, value pair should be kept)
+-- or false (if the key, value pair should be discarded).
+-- @treturn table the filtered table
+function T.filter(t, filterer)
+  local filtered = {}
+
+  for key, value in pairs(t) do
+    if filterer(value, key) then
+      if type(key) == 'string' then
+        filtered[key] = value
+      else
+        table.insert(filtered, value)
+      end
+    end
+  end
+
+  return filtered
+end
+
+--- Reduce the elements of a table to a single value.
+-- @tparam table t the table to reduce
+-- @tparam func reducer callback to invoke. Takes (reduction, value, key) as
+-- params and is expected to return the reduction.
+-- @param reduction the reduction's initial value
+-- @return the reduction
+function T.reduce(t, reducer, reduction)
+  for key, value in pairs(t) do
+    reduction = reducer(reduction, value, key)
+  end
+
+  return reduction
+end
+
+--- Create a table from a consecutive subset of another table's array elements.
+-- @tparam table t the table from which to extract
+-- @tparam[opt=0] number istart starting index of the slice, can be negative
+-- @tparam[opt=#t] number iend ending index of the slice, can be negative
 -- @treturn table the table slice
 function T.slice(t, istart, iend)
   local sliced = {}
@@ -50,113 +131,42 @@ function T.slice(t, istart, iend)
   return sliced
 end
 
---- Create a table from the keys of another table's map elements
--- @tab t the table from which to extract
--- @treturn table the table of keys
-function T.keys(t)
-  local keys = {}
+--- Join the array elements of a table into a string.
+-- @tparam table t the table to join
+-- @tparam[opt=""] string sep optional separator
+-- @treturn string the joined string
+function T.join(t, sep)
+  sep = sep or ''
+  local joined = ''
 
-  for key, value in pairs(t) do
-    if type(key) == 'string' then
-      table.insert(keys, key)
-    end
+  for i, v in ipairs(t) do
+    joined = joined .. tostring(v) .. (i < #t and sep or '')
   end
 
-  return keys
+  return joined
 end
 
---- Create a table from the values of another table's map elements
--- @tab t the table from which to extract
--- @treturn table the table of values
-function T.values(t)
-  local values = {}
-
-  for key, value in pairs(t) do
-    if type(key) == 'string' then
-      table.insert(values, value)
-    end
-  end
-
-  return values
-end
-
---- Invoke a callback over all elements of table
--- @tab table t the table to iterate
--- @func callback callback to invoke, takes (value, key) as params
--- @treturn table t (for chaining reasons)
-function T.each(t, callback)
-  for key, value in pairs(t) do
-    callback(value, key)
-  end
-
-  return t
-end
-
---- Transform the elements of a table
--- @tab t the table to transform
--- @func mapper callback to invoke, takes (value, key) as params
--- @treturn table the mapped table
-function T.map(t, mapper)
-  local mapped = {}
-
-  for key, value in pairs(t) do
-    local mappedvalue, mappedkey = mapper(value, key)
-
-    if mappedkey ~= nil then
-      mapped[mappedkey] = mappedvalue
-    elseif type(key) == 'string' then
-      mapped[key] = mappedvalue
-    else
-      table.insert(mapped, mappedvalue)
-    end
-  end
-
-  return mapped
-end
-
---- Filter the elements of a table
--- @tab t the table to filter
--- @func filterer callback to invoke, takes (value, key) as params
--- @treturn table the filtered table
-function T.filter(t, filterer)
-  local filtered = {}
-
-  for key, value in pairs(t) do
-    if filterer(value, key) then
-      if type(key) == 'string' then
-        filtered[key] = value
-      else
-        table.insert(filtered, value)
-      end
-    end
-  end
-
-  return filtered
-end
-
---- Reduce the elements of a table
--- @tab t the table to reduce
--- @func reducer callback to invoke, takes (value, key) as params
--- @return the reduction
-function T.reduce(t, reducer, reduction)
-  for key, value in pairs(t) do
-    reduction = reducer(reduction, value, key)
-  end
-
-  return reduction
-end
-
-function T.find(t, value, iter)
+--- Find a (value, key) pair in a table.
+-- @tparam table t the table to search
+-- @param search if this is a function, the first pair w/
+-- `search(value, key) == true` is returned. Otherwise the first pair w/
+-- `value === search` is returned. Default returns (nil, nil).
+-- @treturn value the found value
+-- @treturn key the found key
+function T.find(t, search)
   iter = iter or pairs
 
-  local f = type(value) == 'function' and value
-    or function(v)
-      return v == value
+  if type(search) == 'function' then
+    for key, value in pairs(t) do
+      if search(value, key) then
+        return value, key
+      end
     end
-
-  for a, v in iter(t) do
-    if f(v, a) then
-      return v, a
+  else
+    for key, value in pairs(t) do
+      if value == search then
+        return value, key
+      end
     end
   end
 
@@ -228,9 +238,5 @@ function T.remove(t, idx, n)
 
   return unpack(removed)
 end
-
--- -----------------------------------------------------------------------------
--- Return
--- -----------------------------------------------------------------------------
 
 return T
