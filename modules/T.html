@@ -1,0 +1,401 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>lutil</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>lutil</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><a href="../modules/S.html">S</a></li>
+  <li><strong>T</strong></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>T</code></h1>
+<p>Table Utils</p>
+<p></p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#keys">keys (t)</a></td>
+	<td class="summary">Create a table from the keys of another table's map elements.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#values">values (t)</a></td>
+	<td class="summary">Create a table from the values of another table's map elements.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#each">each (t, callback)</a></td>
+	<td class="summary">Invoke a callback over all elements of a table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#map">map (t, mapper)</a></td>
+	<td class="summary">Map the elements of a table to different values (and keys).</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#filter">filter (t, filterer)</a></td>
+	<td class="summary">Filter the elements of a table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#reduce">reduce (t, reducer, reduction)</a></td>
+	<td class="summary">Reduce the elements of a table to a single value.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#slice">slice (t[, istart=0[, iend=#t]])</a></td>
+	<td class="summary">Create a table from a consecutive subset of another table's array elements.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#join">join (t[, sep=""])</a></td>
+	<td class="summary">Join the array elements of a table into a string.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#find">find (t, search)</a></td>
+	<td class="summary">Find a (value, key) pair in a table.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "keys"></a>
+    <strong>keys (t)</strong>
+    </dt>
+    <dd>
+    Create a table from the keys of another table's map elements.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         the table from which to extract
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        the table of keys
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "values"></a>
+    <strong>values (t)</strong>
+    </dt>
+    <dd>
+    Create a table from the values of another table's map elements.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         the table from which to extract
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        the table of values
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "each"></a>
+    <strong>each (t, callback)</strong>
+    </dt>
+    <dd>
+    Invoke a callback over all elements of a table.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         the table to iterate
+        </li>
+        <li><span class="parameter">callback</span>
+            <span class="types"><span class="type">function</span></span>
+         callback to invoke. Takes (value, key) as params
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        t (for chaining)
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "map"></a>
+    <strong>map (t, mapper)</strong>
+    </dt>
+    <dd>
+    Map the elements of a table to different values (and keys).
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         the table to map
+        </li>
+        <li><span class="parameter">mapper</span>
+            <span class="types"><span class="type">function</span></span>
+         callback to invoke. Takes (value, key) as params and
+ is expected to return at least one value (the mapped value) and optionally a
+ new key.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        the mapped table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "filter"></a>
+    <strong>filter (t, filterer)</strong>
+    </dt>
+    <dd>
+    Filter the elements of a table.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         the table to filter
+        </li>
+        <li><span class="parameter">filterer</span>
+            <span class="types"><span class="type">function</span></span>
+         callback to invoke. Takes (value, key) as params
+ and it expected to return either true (if the key, value pair should be kept)
+ or false (if the key, value pair should be discarded).
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        the filtered table
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "reduce"></a>
+    <strong>reduce (t, reducer, reduction)</strong>
+    </dt>
+    <dd>
+    Reduce the elements of a table to a single value.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         the table to reduce
+        </li>
+        <li><span class="parameter">reducer</span>
+            <span class="types"><span class="type">func</span></span>
+         callback to invoke. Takes (reduction, value, key) as
+ params and is expected to return the reduction.
+        </li>
+        <li><span class="parameter">reduction</span>
+         the reduction's initial value
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        the reduction
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "slice"></a>
+    <strong>slice (t[, istart=0[, iend=#t]])</strong>
+    </dt>
+    <dd>
+    Create a table from a consecutive subset of another table's array elements.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         the table from which to extract
+        </li>
+        <li><span class="parameter">istart</span>
+            <span class="types"><span class="type">number</span></span>
+         starting index of the slice, can be negative
+         (<em>default</em> 0)
+        </li>
+        <li><span class="parameter">iend</span>
+            <span class="types"><span class="type">number</span></span>
+         ending index of the slice, can be negative
+         (<em>default</em> #t)
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+        the table slice
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "join"></a>
+    <strong>join (t[, sep=""])</strong>
+    </dt>
+    <dd>
+    Join the array elements of a table into a string.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         the table to join
+        </li>
+        <li><span class="parameter">sep</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         optional separator
+         (<em>default</em> "")
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        the joined string
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "find"></a>
+    <strong>find (t, search)</strong>
+    </dt>
+    <dd>
+    Find a (value, key) pair in a table.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">t</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
+         the table to search
+        </li>
+        <li><span class="parameter">search</span>
+         if this is a function, the first pair w/
+ `search(value, key) == true` is returned. Otherwise the first pair w/
+ `value === search` is returned. Default returns (nil, nil).
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">value</span></span>
+        the found value</li>
+        <li>
+           <span class="types"><span class="type">key</span></span>
+        the found key</li>
+    </ol>
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2021-09-20 13:26:20 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
