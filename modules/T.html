@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <head>
@@ -7,50 +6,29 @@
     <link rel="stylesheet" href="../ldoc.css" type="text/css" />
 </head>
 <body>
-
 <div id="container">
-
-<div id="product">
-	<div id="product_logo"></div>
-	<div id="product_name"><big><b></b></big></div>
-	<div id="product_description"></div>
-</div> <!-- id="product" -->
-
-
 <div id="main">
-
-
 <!-- Menu -->
-
 <div id="navigation">
 <br/>
 <h1>lutil</h1>
-
 <ul>
   <li><a href="../index.html">Index</a></li>
 </ul>
-
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
 </ul>
-
-
 <h2>Modules</h2>
 <ul class="nowrap">
   <li><a href="../modules/S.html">S</a></li>
   <li><strong>T</strong></li>
 </ul>
-
 </div>
-
 <div id="content">
-
 <h1>Module <code>T</code></h1>
 <p>Table Utils</p>
 <p></p>
-
-
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
@@ -90,11 +68,8 @@
 	<td class="summary">Find a (value, key) pair in a table.</td>
 	</tr>
 </table>
-
 <br/>
 <br/>
-
-
     <h2 class="section-header "><a name="Functions"></a>Functions</h2>
 
     <dl class="function">
@@ -104,8 +79,6 @@
     </dt>
     <dd>
     Create a table from the keys of another table's map elements.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">t</span>
@@ -113,17 +86,12 @@
          the table from which to extract
         </li>
     </ul>
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
         the table of keys
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "values"></a>
@@ -131,8 +99,6 @@
     </dt>
     <dd>
     Create a table from the values of another table's map elements.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">t</span>
@@ -140,17 +106,12 @@
          the table from which to extract
         </li>
     </ul>
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
         the table of values
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "each"></a>
@@ -158,8 +119,6 @@
     </dt>
     <dd>
     Invoke a callback over all elements of a table.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">t</span>
@@ -171,17 +130,12 @@
          callback to invoke. Takes (value, key) as params
         </li>
     </ul>
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
         t (for chaining)
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "map"></a>
@@ -189,8 +143,6 @@
     </dt>
     <dd>
     Map the elements of a table to different values (and keys).
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">t</span>
@@ -204,17 +156,12 @@
  new key.
         </li>
     </ul>
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
         the mapped table
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "filter"></a>
@@ -222,8 +169,6 @@
     </dt>
     <dd>
     Filter the elements of a table.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">t</span>
@@ -237,17 +182,12 @@
  or false (if the key, value pair should be discarded).
         </li>
     </ul>
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
         the filtered table
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "reduce"></a>
@@ -255,8 +195,6 @@
     </dt>
     <dd>
     Reduce the elements of a table to a single value.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">t</span>
@@ -272,16 +210,11 @@
          the reduction's initial value
         </li>
     </ul>
-
     <h3>Returns:</h3>
     <ol>
 
         the reduction
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "slice"></a>
@@ -289,8 +222,6 @@
     </dt>
     <dd>
     Create a table from a consecutive subset of another table's array elements.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">t</span>
@@ -308,17 +239,12 @@
          (<em>default</em> #t)
         </li>
     </ul>
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
         the table slice
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "join"></a>
@@ -326,8 +252,6 @@
     </dt>
     <dd>
     Join the array elements of a table into a string.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">t</span>
@@ -340,17 +264,12 @@
          (<em>default</em> "")
         </li>
     </ul>
-
     <h3>Returns:</h3>
     <ol>
 
            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
         the joined string
     </ol>
-
-
-
-
 </dd>
     <dt>
     <a name = "find"></a>
@@ -358,8 +277,6 @@
     </dt>
     <dd>
     Find a (value, key) pair in a table.
-
-
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">t</span>
@@ -372,7 +289,6 @@
  `value === search` is returned. Default returns (nil, nil).
         </li>
     </ul>
-
     <h3>Returns:</h3>
     <ol>
         <li>
@@ -382,20 +298,15 @@
            <span class="types"><span class="type">key</span></span>
         the found key</li>
     </ol>
-
-
-
-
 </dd>
 </dl>
-
-
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-09-20 13:26:20 </i>
+<i style="float:right;">Last updated 2021-09-20 23:46:00 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
 </html>
+<!-- vim: filetype=html: -->
