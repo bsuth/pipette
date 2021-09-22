@@ -19,7 +19,7 @@
 </ul>
 
 <h4>Modules</h4>
-<ul class="nowrap">
+<ul>
 <li><a href="../modules/S.html">S</a></li>
 <li><strong>T</strong></li>
 </ul>
@@ -36,39 +36,39 @@
 <h3><a href="#Functions">Functions</a></h3>
 <table class="function_list">
 <tr>
-<td class="name" nowrap><a href="#keys">keys (t)</a></td>
+<td class="name"><a href="#keys">keys (t)</a></td>
 <td class="summary">Create a table from the keys of another table's map elements.</td>
 </tr>
 <tr>
-<td class="name" nowrap><a href="#values">values (t)</a></td>
+<td class="name"><a href="#values">values (t)</a></td>
 <td class="summary">Create a table from the values of another table's map elements.</td>
 </tr>
 <tr>
-<td class="name" nowrap><a href="#each">each (t, callback)</a></td>
+<td class="name"><a href="#each">each (t, callback)</a></td>
 <td class="summary">Invoke a callback over all elements of a table.</td>
 </tr>
 <tr>
-<td class="name" nowrap><a href="#map">map (t, mapper)</a></td>
+<td class="name"><a href="#map">map (t, mapper)</a></td>
 <td class="summary">Map the elements of a table to different values (and keys).</td>
 </tr>
 <tr>
-<td class="name" nowrap><a href="#filter">filter (t, filterer)</a></td>
+<td class="name"><a href="#filter">filter (t, filterer)</a></td>
 <td class="summary">Filter the elements of a table.</td>
 </tr>
 <tr>
-<td class="name" nowrap><a href="#reduce">reduce (t, reducer, reduction)</a></td>
+<td class="name"><a href="#reduce">reduce (t, reducer, reduction)</a></td>
 <td class="summary">Reduce the elements of a table to a single value.</td>
 </tr>
 <tr>
-<td class="name" nowrap><a href="#slice">slice (t[, istart=0[, iend=#t]])</a></td>
+<td class="name"><a href="#slice">slice (t[, istart=0[, iend=#t]])</a></td>
 <td class="summary">Create a table from a consecutive subset of another table's array elements.</td>
 </tr>
 <tr>
-<td class="name" nowrap><a href="#join">join (t[, sep=""])</a></td>
+<td class="name"><a href="#join">join (t[, sep=""])</a></td>
 <td class="summary">Join the array elements of a table into a string.</td>
 </tr>
 <tr>
-<td class="name" nowrap><a href="#find">find (t, search)</a></td>
+<td class="name"><a href="#find">find (t, search)</a></td>
 <td class="summary">Find a (value, key) pair in a table.</td>
 </tr>
 </table>
@@ -79,18 +79,18 @@
 <dl class="function">
 <dt>
 <a name = "keys"></a>
-<strong>keys (t)</strong>
+<h4>keys (t)</h4>
 </dt>
 <dd>
 Create a table from the keys of another table's map elements.
-<h3>Parameters:</h3>
+<h5>Parameters:</h5>
 <ul>
 <li><span class="parameter">t</span>
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
  the table from which to extract
 </li>
 </ul>
-<h3>Returns:</h3>
+<h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -99,18 +99,18 @@ the table of keys
 </dd>
 <dt>
 <a name = "values"></a>
-<strong>values (t)</strong>
+<h4>values (t)</h4>
 </dt>
 <dd>
 Create a table from the values of another table's map elements.
-<h3>Parameters:</h3>
+<h5>Parameters:</h5>
 <ul>
 <li><span class="parameter">t</span>
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
  the table from which to extract
 </li>
 </ul>
-<h3>Returns:</h3>
+<h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -119,11 +119,11 @@ the table of values
 </dd>
 <dt>
 <a name = "each"></a>
-<strong>each (t, callback)</strong>
+<h4>each (t, callback)</h4>
 </dt>
 <dd>
 Invoke a callback over all elements of a table.
-<h3>Parameters:</h3>
+<h5>Parameters:</h5>
 <ul>
 <li><span class="parameter">t</span>
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -134,7 +134,7 @@ Invoke a callback over all elements of a table.
  callback to invoke. Takes (value, key) as params
 </li>
 </ul>
-<h3>Returns:</h3>
+<h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -143,11 +143,11 @@ t (for chaining)
 </dd>
 <dt>
 <a name = "map"></a>
-<strong>map (t, mapper)</strong>
+<h4>map (t, mapper)</h4>
 </dt>
 <dd>
 Map the elements of a table to different values (and keys).
-<h3>Parameters:</h3>
+<h5>Parameters:</h5>
 <ul>
 <li><span class="parameter">t</span>
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -160,7 +160,7 @@ Map the elements of a table to different values (and keys).
  new key.
 </li>
 </ul>
-<h3>Returns:</h3>
+<h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -169,11 +169,11 @@ the mapped table
 </dd>
 <dt>
 <a name = "filter"></a>
-<strong>filter (t, filterer)</strong>
+<h4>filter (t, filterer)</h4>
 </dt>
 <dd>
 Filter the elements of a table.
-<h3>Parameters:</h3>
+<h5>Parameters:</h5>
 <ul>
 <li><span class="parameter">t</span>
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -186,7 +186,7 @@ Filter the elements of a table.
  or false (if the key, value pair should be discarded).
 </li>
 </ul>
-<h3>Returns:</h3>
+<h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -195,11 +195,11 @@ the filtered table
 </dd>
 <dt>
 <a name = "reduce"></a>
-<strong>reduce (t, reducer, reduction)</strong>
+<h4>reduce (t, reducer, reduction)</h4>
 </dt>
 <dd>
 Reduce the elements of a table to a single value.
-<h3>Parameters:</h3>
+<h5>Parameters:</h5>
 <ul>
 <li><span class="parameter">t</span>
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -214,7 +214,7 @@ Reduce the elements of a table to a single value.
  the reduction's initial value
 </li>
 </ul>
-<h3>Returns:</h3>
+<h5>Returns:</h5>
 <ol>
 
 the reduction
@@ -222,11 +222,11 @@ the reduction
 </dd>
 <dt>
 <a name = "slice"></a>
-<strong>slice (t[, istart=0[, iend=#t]])</strong>
+<h4>slice (t[, istart=0[, iend=#t]])</h4>
 </dt>
 <dd>
 Create a table from a consecutive subset of another table's array elements.
-<h3>Parameters:</h3>
+<h5>Parameters:</h5>
 <ul>
 <li><span class="parameter">t</span>
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -243,7 +243,7 @@ Create a table from a consecutive subset of another table's array elements.
 (<em>default</em> #t)
 </li>
 </ul>
-<h3>Returns:</h3>
+<h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -252,11 +252,11 @@ the table slice
 </dd>
 <dt>
 <a name = "join"></a>
-<strong>join (t[, sep=""])</strong>
+<h4>join (t[, sep=""])</h4>
 </dt>
 <dd>
 Join the array elements of a table into a string.
-<h3>Parameters:</h3>
+<h5>Parameters:</h5>
 <ul>
 <li><span class="parameter">t</span>
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -268,7 +268,7 @@ Join the array elements of a table into a string.
 (<em>default</em> "")
 </li>
 </ul>
-<h3>Returns:</h3>
+<h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
@@ -277,11 +277,11 @@ the joined string
 </dd>
 <dt>
 <a name = "find"></a>
-<strong>find (t, search)</strong>
+<h4>find (t, search)</h4>
 </dt>
 <dd>
 Find a (value, key) pair in a table.
-<h3>Parameters:</h3>
+<h5>Parameters:</h5>
 <ul>
 <li><span class="parameter">t</span>
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
@@ -293,7 +293,7 @@ Find a (value, key) pair in a table.
  `value === search` is returned. Default returns (nil, nil).
 </li>
 </ul>
-<h3>Returns:</h3>
+<h5>Returns:</h5>
 <ol>
 <li>
 <span class="types"><span class="type">value</span></span>
