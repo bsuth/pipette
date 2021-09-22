@@ -1,8 +1,8 @@
 file = 'lutil'
-project = 'lutil'
-title = 'lutil'
-description = 'Utility functions for Lua.'
 package = 'lutil'
+title = 'lutil'
+project = 'lutil'
+description = 'a lua utils library'
 
 style = 'docs'
 template = 'docs'

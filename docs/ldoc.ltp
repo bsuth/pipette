@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="$(ldoc.css)" type="text/css" />
 </head>
 <body>
-<div id="main">
+<div id="root">
 # local no_spaces = ldoc.no_spaces
 # local use_li = ldoc.use_li
 # local display_name = ldoc.display_name
@@ -17,23 +17,18 @@
 # -- Navigation
 # -- ---------------------------------------------------------------------------
 
-<div id="navigation">
-<br/>
-# if not ldoc.single and module then -- reference back to project index
-<a href="../$(ldoc.output).html"><h1>$(ldoc.project)</h1></a>
+<div id="navigation" class="scrollable">
+# if module then
+<h1 id="project"><a href="../$(ldoc.output).html">$(ldoc.project)</a></h1>
 # else
-<h1>$(ldoc.project)</h1>
+<h1 id="project"><a href="$(ldoc.output).html">$(ldoc.project)</a></h1>
 # end
 
-# if module and not ldoc.no_summary and #module.items > 0 then
-<h4>Contents</h4>
-<ul>
-# for kind,items in module.kinds() do
-<li><a href="#$(no_spaces(kind))">$(kind)</a></li>
+# if ldoc.description then
+<p id="description">$(M(ldoc.description, nil))</p>
 # end
-</ul>
-# end
-# if ldoc.no_summary and module and not ldoc.one then -- bang out the functions on the side
+
+# if module then
 # for kind, items in module.kinds() do
 <h4>$(kind)</h4>
 <ul>
@@ -44,17 +39,12 @@
 # end
 # end
 
-# local this_mod = module and module.name
 # for kind, mods, type in ldoc.kinds() do
-#  if ldoc.allowed_in_contents(type,module) then
+#  if ldoc.allowed_in_contents(type, module) then
 <h4>$(kind)</h4>
 <ul>
 #  for mod in mods() do local name = display_name(mod)
-#   if mod.name == this_mod then
-<li><strong>$(name)</strong></li>
-#   else
 <li><a href="$(ldoc.ref_to_module(mod))">$(name)</a></li>
-#   end
 #  end
 # end
 </ul>
@@ -269,8 +259,9 @@ $(li)<pre class="example">$(ldoc.prettify(usage))</pre>$(il)
 </table>
 # end -- for kinds
 # end -- if module
-</div> <!-- id="content" -->
-</div> <!-- id="main" -->
+</div>
+</div>
 </body>
 </html>
+
 <!-- vim: filetype=html: -->

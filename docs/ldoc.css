@@ -1,20 +1,19 @@
 /* ---------------------------------------------------------------------------*/
-/* Defaults                                                                   */
-/* Color Scheme: Onedark                                                      */
+/* Base                                                                       */
 /* ---------------------------------------------------------------------------*/
 
 :root {
   --onedark-void: #161617;
   --onedark-onyx: #212328;
-  --onedark-black: #282c34;
+  --onedark-black: #282C34;
 
-  --onedark-red: #e06c75;
-  --onedark-green: #98c379;
-  --onedark-yellow: #e5c07b;
-  --onedark-blue: #61afef;
-  --onedark-purple: #c678dd;
-  --onedark-cyan: #56b6c2;
-  --onedark-white: #abb2bf;
+  --onedark-red: #E06C75;
+  --onedark-green: #98C379;
+  --onedark-yellow: #E5C07B;
+  --onedark-blue: #61AFEF;
+  --onedark-purple: #C678DD;
+  --onedark-cyan: #56B6C2;
+  --onedark-white: #ABB2BF;
 }
 
 html, body, body * {
@@ -30,7 +29,7 @@ span.types:after { content:")"; }
 .type { font-weight: bold; font-style:italic }
 
 body ul, body ol {
-  margin-left: 16px;
+  /* margin-left: 16px; */
 }
 
 ul {
@@ -166,35 +165,80 @@ dl.table dd, dl.function dd {
 }
 
 /* ---------------------------------------------------------------------------*/
-/* Page                                                                       */
+/* Scrollable                                                                 */
+/*                                                                            */
+/* Hides the scrollbar while still allowing the user to scroll                */
 /* ---------------------------------------------------------------------------*/
 
-#main {
+.scrollable {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+}
+
+.scrollable::-webkit-scrollbar { /* WebKit */
+  width: 0;
+  height: 0;
+}
+
+/* ---------------------------------------------------------------------------*/
+/* Layout: Root                                                               */
+/* ---------------------------------------------------------------------------*/
+
+#root {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: auto 1fr;
   color: var(--onedark-white);
   background-color: var(--onedark-black);
   font-family: arial, helvetica, geneva, sans-serif;
 }
 
+/* ---------------------------------------------------------------------------*/
+/* Layout: Navigation                                                         */
+/* ---------------------------------------------------------------------------*/
+
 #navigation {
   width: 256px;
-  padding: 8px;
+  height: 100vh;
+  padding: 32px 0;
+
+  position: fixed;
   background-color: var(--onedark-onyx);
 }
 
+#project {
+  margin: 0 0 8px 8px;
+}
+
+#project a {
+  color: var(--onedark-green);
+}
+
+#description {
+  margin: 0 0 16px 8px;
+  font-weight: bold;
+  color: var(--onedark-green);
+}
+
 #navigation h4 {
-  width: calc(100% + 16px);
-  margin: 8px 0 0 -8px;
   padding: 8px;
   background-color: var(--onedark-void);
 }
 
-#navigation ul li {
-  margin-top: 8px;
+#navigation ul a {
+  height: 100%;
+  padding: 8px;
+  display: block;
 }
 
+#navigation ul a:hover {
+  background-color: #88888822;
+}
+
+/* ---------------------------------------------------------------------------*/
+/* Layout: Content                                                            */
+/* ---------------------------------------------------------------------------*/
+
 #content {
-  padding: 16px;
+  margin-left: 256px;
+  padding: 32px 16px;
 }
