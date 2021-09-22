@@ -1,7 +1,7 @@
-file = 'lutil'
-package = 'lutil'
-title = 'lutil'
-project = 'lutil'
+file = 'pipette'
+package = 'pipette'
+title = 'pipette'
+project = 'pipette'
 description = 'a lua utils library'
 
 style = 'docs'
