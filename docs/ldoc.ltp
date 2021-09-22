@@ -25,13 +25,6 @@
 # else
 <h1>$(ldoc.project)</h1>
 # end
-# if ldoc.icon then
-#   if module then
-<img src="../data/$(ldoc.icon)" />
-#   else
-<img src="data/$(ldoc.icon)" />
-#   end
-# end
 
 # if module and not ldoc.no_summary and #module.items > 0 then
 <h4>Contents</h4>
