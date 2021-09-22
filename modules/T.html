@@ -6,22 +6,31 @@
 <link rel="stylesheet" href="../ldoc.css" type="text/css" />
 </head>
 <body>
-<div id="main">
+<div id="root">
 
 
-<div id="navigation">
-<br/>
-<a href="../index.html"><h1>lutil</h1></a>
+<div id="navigation" class="scrollable">
+<h1 id="project"><a href="../index.html">lutil</a></h1>
 
-<h4>Contents</h4>
+<p id="description">a lua utils library</p>
+
+<h4>Functions</h4>
 <ul>
-<li><a href="#Functions">Functions</a></li>
+<li><a href="#keys">keys (t)</a></li>
+<li><a href="#values">values (t)</a></li>
+<li><a href="#each">each (t, callback)</a></li>
+<li><a href="#map">map (t, mapper)</a></li>
+<li><a href="#filter">filter (t, filterer)</a></li>
+<li><a href="#reduce">reduce (t, reducer, reduction)</a></li>
+<li><a href="#slice">slice (t[, istart=0[, iend=#t]])</a></li>
+<li><a href="#join">join (t[, sep=""])</a></li>
+<li><a href="#find">find (t, search)</a></li>
 </ul>
 
 <h4>Modules</h4>
 <ul>
 <li><a href="../modules/S.html">S</a></li>
-<li><strong>T</strong></li>
+<li><a href="../modules/T.html">T</a></li>
 </ul>
 </div>
 
@@ -304,8 +313,9 @@ the found key</li>
 </ol>
 </dd>
 </dl>
-</div> <!-- id="content" -->
-</div> <!-- id="main" -->
+</div>
+</div>
 </body>
 </html>
+
 <!-- vim: filetype=html: -->
