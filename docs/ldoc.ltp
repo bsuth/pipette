@@ -12,7 +12,6 @@
 # local display_name = ldoc.display_name
 # local iter = ldoc.modules.iter
 # local function M(txt,item) return ldoc.markup(txt,item,ldoc.plain) end
-# local nowrap = ldoc.wrap and '' or 'nowrap'
 
 # -- ---------------------------------------------------------------------------
 # -- Navigation
@@ -37,7 +36,7 @@
 # if ldoc.no_summary and module and not ldoc.one then -- bang out the functions on the side
 # for kind, items in module.kinds() do
 <h4>$(kind)</h4>
-<ul class="nowrap">
+<ul>
 # for item in items() do
 <li><a href="#$(item.name)">$(display_name(item))</a></li>
 # end
@@ -49,7 +48,7 @@
 # for kind, mods, type in ldoc.kinds() do
 #  if ldoc.allowed_in_contents(type,module) then
 <h4>$(kind)</h4>
-<ul class="$(kind=='Topics' and '' or 'nowrap')">
+<ul>
 #  for mod in mods() do local name = display_name(mod)
 #   if mod.name == this_mod then
 <li><strong>$(name)</strong></li>
@@ -112,7 +111,7 @@ $(li)<pre class="example">$(ldoc.escape(usage))</pre>$(il)
 <table class="function_list">
 #  for item in items() do
 <tr>
-<td class="name" $(nowrap)><a href="#$(item.name)">$(display_name(item))</a></td>
+<td class="name"><a href="#$(item.name)">$(display_name(item))</a></td>
 <td class="summary">$(M(item.summary,item))</td>
 </tr>
 #  end -- for items
@@ -145,10 +144,7 @@ $(M(ldoc.descript(kitem),kitem))
 #  for item in items() do
 <dt>
 <a name = "$(item.name)"></a>
-<strong>$(display_name(item))</strong>
-#   if ldoc.prettify_files and ldoc.is_file_prettified[item.module.file.filename] then
-<a style="float:right;" href="$(ldoc.source_ref(item))">line $(item.lineno)</a>
-#  end
+<h4>$(display_name(item))</h4>
 </dt>
 <dd>
 $(M(ldoc.descript(item),item))
@@ -169,7 +165,7 @@ $(li)$(custom.format and custom.format(value) or M(value))$(il)
 #  if show_parms and item.params and #item.params > 0 then
 #    local subnames = module.kinds:type_of(item).subnames
 #    if subnames then
-<h3>$(subnames):</h3>
+<h5>$(subnames):</h5>
 #    end
 <ul>
 #   for parm in iter(item.params) do
@@ -202,7 +198,7 @@ $(M(item.params.map[p],item))
 </ul>
 #   end -- if params
 #  if show_return and item.retgroups then local groups = item.retgroups
-<h3>Returns:</h3>
+<h5>Returns:</h5>
 #   for i,group in ldoc.ipairs(groups) do local li,il = use_li(group)
 <ol>
 #   for r in group:iter() do local type, ctypes = item:return_type(r); local rt = ldoc.typename(type)
@@ -266,7 +262,7 @@ $(li)<pre class="example">$(ldoc.prettify(usage))</pre>$(il)
 <table class="module_list">
 # for m in mods() do
 <tr>
-<td class="name"  $(nowrap)><a href="$(no_spaces(kind))/$(m.name).html">$(m.name)</a></td>
+<td class="name"><a href="$(no_spaces(kind))/$(m.name).html">$(m.name)</a></td>
 <td class="summary">$(M(ldoc.strip_header(m.summary),m))</td>
 </tr>
 #  end -- for modules
