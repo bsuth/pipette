@@ -1,4 +1,4 @@
---- Table Utils
+--- Table utilities
 -- @module T
 local T = {}
 

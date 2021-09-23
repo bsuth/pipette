@@ -25,7 +25,7 @@
 # end
 
 # if ldoc.description then
-<p id="description">$(M(ldoc.description, nil))</p>
+<p id="description">$(M(ldoc.description))</p>
 # end
 
 # if module then
@@ -52,19 +52,32 @@
 </div>
 
 # -- ---------------------------------------------------------------------------
-# -- Content
+# -- Content: Home
 # -- ---------------------------------------------------------------------------
 
+# if not module then
 <div id="content">
-# if ldoc.body then -- verbatim HTML as contents; 'non-code' entries
-$(ldoc.body)
-# elseif module then -- module documentation
+# if ldoc.full_description then
+<h3>Description</h3>
+<p id="full-description">$(M(ldoc.full_description))</p>
+# end
+</div>
+# end
+
+# -- ---------------------------------------------------------------------------
+# -- Content: Module
+# -- ---------------------------------------------------------------------------
+
+# if module then -- module documentation
+<div id="content">
 <h1>$(ldoc.module_typename(module)) <code>$(module.name)</code></h1>
-<p>$(M(module.summary,module))</p>
-<p>$(M(module.description,module))</p>
+<p>$(M(module.summary, module))</p>
+<p>$(M(module.description, module))</p>
+
 #   if module.tags.include then
 $(M(ldoc.include_file(module.tags.include)))
 #   end
+
 #   if module.see then
 #     local li,il = use_li(module.see)
 <h3>See also:</h3>
@@ -74,6 +87,7 @@ $(li)<a href="$(ldoc.href(see))">$(see.label)</a>$(il)
 #    end -- for
 </ul>
 #   end -- if see
+
 #   if module.usage then
 #     local li,il = use_li(module.usage)
 <h3>Usage:</h3>
@@ -83,6 +97,7 @@ $(li)<pre class="example">$(ldoc.escape(usage))</pre>$(il)
 #     end -- for
 </ul>
 #   end -- if usage
+
 #   if module.info then
 <h3>Info:</h3>
 <ul>
@@ -91,9 +106,11 @@ $(li)<pre class="example">$(ldoc.escape(usage))</pre>$(il)
 #     end
 </ul>
 #   end -- if module.info
+
 <br />
 <br />
 <br />
+
 # if not ldoc.no_summary then
 # -- bang out the tables of item types for this module (e.g Functions, Tables, etc)
 # for kind,items in module.kinds() do
@@ -110,6 +127,7 @@ $(li)<pre class="example">$(ldoc.escape(usage))</pre>$(il)
 <br/>
 <br/>
 #end -- if not no_summary
+
 # --- currently works for both Functions and Tables. The params field either contains
 # --- function parameters or table fields.
 # local show_return = not ldoc.no_return_or_parms
@@ -187,6 +205,7 @@ $(M(item.params.map[p],item))
 #   end -- for
 </ul>
 #   end -- if params
+
 #  if show_return and item.retgroups then local groups = item.retgroups
 <h5>Returns:</h5>
 #   for i,group in ldoc.ipairs(groups) do local li,il = use_li(group)
@@ -213,10 +232,12 @@ $(M(c.comment,item))</li>
 #   end
 #   end -- for group
 #   end -- if returns
+
 #   if show_return and item.raise then
 <h3>Raises:</h3>
 $(M(item.raise,item))
 #   end
+
 #   if item.see then
 #     local li,il = use_li(item.see)
 <h3>See also:</h3>
@@ -226,6 +247,7 @@ $(li)<a href="$(ldoc.href(see))">$(see.label)</a>$(il)
 #    end -- for
 </ul>
 #   end -- if see
+
 #   if item.usage then
 #     local li,il = use_li(item.usage)
 <h3>Usage:</h3>
@@ -235,31 +257,14 @@ $(li)<pre class="example">$(ldoc.prettify(usage))</pre>$(il)
 #     end -- for
 </ul>
 #   end -- if usage
+
 </dd>
 # end -- for items
 </dl>
 # end -- for kinds
-# else -- if module; project-level contents
-# if ldoc.description then
-<h3>$(M(ldoc.description,nil))</h3>
-# end
-# if ldoc.full_description then
-<p>$(M(ldoc.full_description,nil))</p>
-# end
-# for kind, mods in ldoc.kinds() do
-<h3>$(kind)</h3>
-# kind = kind:lower()
-<table class="module_list">
-# for m in mods() do
-<tr>
-<td class="name"><a href="$(no_spaces(kind))/$(m.name).html">$(m.name)</a></td>
-<td class="summary">$(M(ldoc.strip_header(m.summary),m))</td>
-</tr>
-#  end -- for modules
-</table>
-# end -- for kinds
-# end -- if module
+
 </div>
+# end -- if module
 </div>
 </body>
 </html>

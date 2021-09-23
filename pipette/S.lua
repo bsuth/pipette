@@ -1,4 +1,4 @@
---- String Utils
+--- String utilities
 -- @module S
 local S = {}
 
