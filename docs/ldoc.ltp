@@ -12,6 +12,10 @@
 # local display_name = ldoc.display_name
 # local iter = ldoc.modules.iter
 # local function M(txt,item) return ldoc.markup(txt,item,ldoc.plain) end
+# local navbar_module_labels = {
+#   S = 'S (Strings)',
+#   T = 'T (Tables)',
+# }
 
 # -- ---------------------------------------------------------------------------
 # -- Navigation
@@ -29,25 +33,26 @@
 # end
 
 # if module then
-# for kind, items in module.kinds() do
+#  for kind, items in module.kinds() do
 <h4>$(kind)</h4>
 <ul>
-# for item in items() do
+#   for item in items() do
 <li><a href="#$(item.name)">$(display_name(item))</a></li>
-# end
+#   end
 </ul>
-# end
+#  end
 # end
 
 # for kind, mods, type in ldoc.kinds() do
 #  if ldoc.allowed_in_contents(type, module) then
 <h4>$(kind)</h4>
 <ul>
-#  for mod in mods() do local name = display_name(mod)
-<li><a href="$(ldoc.ref_to_module(mod))">$(name)</a></li>
-#  end
-# end
+#   for mod in mods() do
+#    local name = display_name(mod)
+<li><a href="$(ldoc.ref_to_module(mod))">$(navbar_module_labels[name] or name)</a></li>
+#   end
 </ul>
+#  end
 # end
 </div>
 
@@ -58,10 +63,9 @@
 # if not module then
 <div id="content">
 $(ldoc.readme)
-# if ldoc.full_description then
-<h3>Description</h3>
+#  if ldoc.full_description then
 <p id="full-description">$(M(ldoc.full_description))</p>
-# end
+#  end
 </div>
 # end
 
