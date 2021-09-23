@@ -36,11 +36,6 @@ ul {
   list-style-type: none;
 }
 
-p.name {
-  font-family: "Andale Mono", monospace;
-  padding-top: 1em;
-}
-
 /* ---------------------------------------------------------------------------*/
 /* Fonts                                                                      */
 /* ---------------------------------------------------------------------------*/
@@ -241,4 +236,9 @@ dl.table dd, dl.function dd {
 #content {
   margin-left: 256px;
   padding: 32px 16px;
+}
+
+#full-description {
+  margin-bottom: 16px;
+  font-size: 16px;
 }

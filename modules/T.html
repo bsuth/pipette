@@ -35,13 +35,21 @@
 </div>
 
 
+
+
 <div id="content">
 <h1>Module <code>T</code></h1>
-<p>Table Utils</p>
+<p>Table utilities</p>
 <p></p>
+
+
+
+
+
 <br />
 <br />
 <br />
+
 <h3><a href="#Functions">Functions</a></h3>
 <table class="function_list">
 <tr>
@@ -83,6 +91,7 @@
 </table>
 <br/>
 <br/>
+
 <h3 class="section-header "><a name="Functions"></a>Functions</h3>
 
 <dl class="function">
@@ -99,12 +108,17 @@ Create a table from the keys of another table's map elements.
  the table from which to extract
 </li>
 </ul>
+
 <h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
 the table of keys
 </ol>
+
+
+
+
 </dd>
 <dt>
 <a name = "values"></a>
@@ -119,12 +133,17 @@ Create a table from the values of another table's map elements.
  the table from which to extract
 </li>
 </ul>
+
 <h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
 the table of values
 </ol>
+
+
+
+
 </dd>
 <dt>
 <a name = "each"></a>
@@ -143,12 +162,17 @@ Invoke a callback over all elements of a table.
  callback to invoke. Takes (value, key) as params
 </li>
 </ul>
+
 <h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
 t (for chaining)
 </ol>
+
+
+
+
 </dd>
 <dt>
 <a name = "map"></a>
@@ -169,12 +193,17 @@ Map the elements of a table to different values (and keys).
  new key.
 </li>
 </ul>
+
 <h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
 the mapped table
 </ol>
+
+
+
+
 </dd>
 <dt>
 <a name = "filter"></a>
@@ -195,12 +224,17 @@ Filter the elements of a table.
  or false (if the key, value pair should be discarded).
 </li>
 </ul>
+
 <h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
 the filtered table
 </ol>
+
+
+
+
 </dd>
 <dt>
 <a name = "reduce"></a>
@@ -223,11 +257,16 @@ Reduce the elements of a table to a single value.
  the reduction's initial value
 </li>
 </ul>
+
 <h5>Returns:</h5>
 <ol>
 
 the reduction
 </ol>
+
+
+
+
 </dd>
 <dt>
 <a name = "slice"></a>
@@ -252,12 +291,17 @@ Create a table from a consecutive subset of another table's array elements.
 (<em>default</em> #t)
 </li>
 </ul>
+
 <h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.5">table</a></span>
 the table slice
 </ol>
+
+
+
+
 </dd>
 <dt>
 <a name = "join"></a>
@@ -277,12 +321,17 @@ Join the array elements of a table into a string.
 (<em>default</em> "")
 </li>
 </ul>
+
 <h5>Returns:</h5>
 <ol>
 
 <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
 the joined string
 </ol>
+
+
+
+
 </dd>
 <dt>
 <a name = "find"></a>
@@ -302,6 +351,7 @@ Find a (value, key) pair in a table.
  `value === search` is returned. Default returns (nil, nil).
 </li>
 </ul>
+
 <h5>Returns:</h5>
 <ol>
 <li>
@@ -311,8 +361,13 @@ the found value</li>
 <span class="types"><span class="type">key</span></span>
 the found key</li>
 </ol>
+
+
+
+
 </dd>
 </dl>
+
 </div>
 </div>
 </body>
