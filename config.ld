@@ -13,5 +13,6 @@ full_description = [[
 
 style = 'docs'
 template = 'docs'
+readme = 'README.md'
 
 -- vim: filetype=lua:

@@ -57,6 +57,7 @@
 
 # if not module then
 <div id="content">
+$(ldoc.readme)
 # if ldoc.full_description then
 <h3>Description</h3>
 <p id="full-description">$(M(ldoc.full_description))</p>
